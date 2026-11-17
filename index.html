@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Тест: Параллелограмм, ромб, тіктөртбұрыш, шаршы</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d2433;--navy:#1f3a6b;--mut:#5d667a;--line:#c9cfdb;--bg:#f5f4ef;--red:#a12b2b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 'Noto Sans',Arial,sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+header{background:var(--navy);color:#fff;padding:12px 20px;font:600 15px 'Noto Serif',Georgia,serif;letter-spacing:.3px;display:flex;justify-content:space-between}
+main{max-width:920px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:28px 32px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+h1{font:700 27px/1.3 'Noto Serif',Georgia,serif;color:var(--navy);margin:0 0 6px}
+.sub{color:var(--mut);margin:0 0 18px}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:0 0 20px;color:var(--mut);font-size:15px}
+.meta b{color:var(--ink)}
+label{display:block;font-weight:600;margin:14px 0 5px;font-size:15px}
+input[type=text],select{width:100%;padding:11px 12px;font:inherit;border:1px solid #9aa4b8;border-radius:4px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:2px solid #7f9bd1;border-color:var(--navy)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+button.main{margin-top:24px;padding:12px 30px;font:600 17px 'Noto Sans',sans-serif;background:var(--navy);color:#fff;border:0;border-radius:4px;cursor:pointer}
+button.main:disabled{background:#b8bfce;cursor:not-allowed}
+.rules{padding-left:20px;margin:0}.rules li{margin:0 0 9px}
+.warn{background:#fdf1f1;border-left:4px solid var(--red);padding:12px 16px;margin-top:16px;font-size:16px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font:600 16px 'Noto Serif',Georgia,serif;color:var(--navy)}
+#tm{font-variant-numeric:tabular-nums;font-size:20px}#tm.low{color:var(--red)}
+.bar{height:5px;background:#dfe3ec;border-radius:3px;margin-bottom:18px;overflow:hidden}.bar i{display:block;height:100%;width:100%;background:var(--navy);transition:width .3s linear}
+.qbody{display:grid;grid-template-columns:1fr;gap:20px}
+.qbody.hasfig{grid-template-columns:1fr 330px}
+.qt{font-size:19px;font-weight:600;margin:0 0 16px}
+.fig{border:1px solid var(--line);border-radius:6px;background:#fbfcfe;padding:6px;align-self:start}
+.fig svg{width:100%;height:auto;display:block}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;margin:0 0 10px;padding:11px 14px;font:inherit;background:#fff;border:1px solid #9aa4b8;border-radius:4px;cursor:pointer}
+.opt b{font:700 16px 'Noto Serif',serif;color:var(--navy);min-width:20px}
+.opt.sel{border-color:var(--navy);background:#e8eef9;box-shadow:inset 0 0 0 1px var(--navy)}
+.numin{max-width:240px;font-size:22px;text-align:center}
+.hint{color:var(--mut);font-size:14px;margin-top:8px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
+.foot small{color:var(--mut)}
+.hide{display:none!important}
+.score{font:700 54px 'Noto Serif',serif;color:var(--navy);margin:6px 0}
+table.r{border-collapse:collapse;margin:12px 0;font-size:16px}table.r td{padding:5px 18px 5px 0;border-bottom:1px solid #e6e9f0}table.r td:first-child{color:var(--mut)}
+#ov{position:fixed;inset:0;background:rgba(20,28,45,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:9}
+#ov .card{max-width:520px;border-top:5px solid var(--red)}#ov h2{margin:0 0 8px;font:700 22px 'Noto Serif',serif;color:var(--red)}
+@media(max-width:760px){.qbody.hasfig{grid-template-columns:1fr}.card{padding:20px 18px}.grid2{grid-template-columns:1fr}.fig{order:-1;max-width:360px;margin:0 auto}}
+</style>
+</head>
+<body>
+<header><span>Геометрия · 8Ә сынып</span><span>8.1.1.6</span></header>
+<main>
+
+<section id="s1" class="card">
+<h1>Тест: Параллелограмм, ромб, тіктөртбұрыш, шаршы және олардың қасиеттері мен белгілері</h1>
+<p class="sub">Оқу мақсаты 8.1.1.6 — тіктөртбұрыш, ромб, шаршы анықтамаларын білу және олардың қасиеттері мен белгілерін қорытып шығару</p>
+<div class="meta">Пән: <b>Геометрия</b> &nbsp;·&nbsp; Математика мұғалімі: <b>Кунгозин Даулет Багдашұлы</b></div>
+<label for="fio">Аты-жөні (Тегі, аты)</label>
+<input type="text" id="fio" autocomplete="off" placeholder="Введите ФИ">
+<div class="grid2">
+<div><label for="cls">Сынып</label><select id="cls"><option value="">— таңдаңыз —</option><option>8Ә</option></select></div>
+<div><label for="var">Нұсқа</label><select id="var"><option value="">— таңдаңыз —</option><option value="1">1-нұсқа</option><option value="2">2-нұсқа</option></select></div>
+</div>
+<button class="main" id="next1" disabled>Әрі қарай</button>
+</section>
+
+<section id="s2" class="card hide">
+<h1>Тест өткізу ережелері</h1>
+<p class="sub">Тестті бастамас бұрын мұқият оқып шығыңыз</p>
+<ol class="rules">
+<li>Тест 10 сұрақтан тұрады: 5 сұраққа төрт жауаптың ішінен бір дұрыс жауапты таңдайсыз, 5 сұраққа жауапты санмен енгізесіз.</li>
+<li>Әр сұраққа <b>1,5 минут</b> беріледі. Уақыт біткенде тест келесі сұраққа автоматты түрде өтеді.</li>
+<li>Әр дұрыс жауап — 1 балл, барлығы — <b>10 балл</b>. Алдыңғы сұраққа қайта оралуға болмайды.</li>
+<li>Санмен жауап жазғанда тек санды енгізіңіз (өлшем бірлігінсіз). Бөлшек сан үтірмен немесе нүктемен жазылады.</li>
+</ol>
+<div class="warn"><b>Назар аударыңыз!</b> Тест кезінде басқа қойындыға немесе қосымшаға ауысуға болмайды. Қойынды ауыстырсаңыз тест тоқтамайды, бірақ бағаңыздан <b>1 балл шегеріледі</b>, ал ауысу саны мұғалімге жіберіледі.</div>
+<button class="main" id="start">Тестті бастау</button>
+</section>
+
+<section id="s3" class="card hide">
+<div class="top"><span id="qn"></span><span id="tm"></span></div>
+<div class="bar"><i id="bf"></i></div>
+<div class="qbody" id="qb"></div>
+<div class="foot"><small>Басқа қойындыға ауыспаңыз: бағаңыздан 1 балл шегеріледі.</small><button class="main" id="nx" style="margin:0" disabled>Келесі</button></div>
+</section>
+
+<section id="s4" class="card hide">
+<h1>Тест аяқталды</h1>
+<p class="sub">Нәтижеңіз:</p>
+<div class="score" id="sc"></div>
+<table class="r" id="rt"></table>
+<p class="sub" id="st"></p>
+<button class="main hide" id="retry">Нәтижені қайта жіберу</button>
+</section>
+</main>
+
+<div id="ov" class="hide"><div class="card"><h2>Ескерту!</h2><p id="ovt"></p><button class="main" id="ovb" style="margin-top:8px">Тестті жалғастыру</button></div></div>
+
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwl8cOkUNwK96kP_8SWY0ASOx-N6_h22fxkvJv3Xq8YqRvO2atwl4rhNCuLmOzk49EVfQ/exec';
+const TIME=90, MAX=10;
+
+/* ---------- SVG ---------- */
+const SH={p:[[30,170],[100,35],[270,35],[200,170]],r:[[40,160],[40,40],[260,40],[260,160]],q:[[70,160],[70,40],[230,40],[230,160]],
+h:[[45,100],[150,15],[255,100],[150,185]],w:[[30,100],[150,45],[270,100],[150,155]],s:[[80,170],[80,30],[220,30],[220,170]]};
+function fig(t,o={}){
+const P=SH[t],O=[P.reduce((s,p)=>s+p[0],0)/4,P.reduce((s,p)=>s+p[1],0)/4];
+const u=(a,b,k=1)=>{const x=b[0]-a[0],y=b[1]-a[1],l=Math.hypot(x,y)||1;return[x/l*k,y/l*k]};
+const tx=(x,y,s,c='#a12b2b')=>`<text x="${x}" y="${y}" fill="${c}" font-family="Noto Sans,Arial" font-weight="700" font-size="14" text-anchor="middle" dominant-baseline="central">${s}</text>`;
+let s=`<svg viewBox="-10 -15 320 230"><polygon points="${P.map(p=>p.join(',')).join(' ')}" fill="#e3ebf8" stroke="#1f3a6b" stroke-width="2.5" stroke-linejoin="round"/>`;
+if(o.d)s+=`<g stroke="#5b6f99" stroke-width="1.6" stroke-dasharray="6 4"><line x1="${P[0][0]}" y1="${P[0][1]}" x2="${P[2][0]}" y2="${P[2][1]}"/><line x1="${P[1][0]}" y1="${P[1][1]}" x2="${P[3][0]}" y2="${P[3][1]}"/></g><circle cx="${O[0]}" cy="${O[1]}" r="3.2" fill="#1f3a6b"/>`;
+s+=`<g fill="none" stroke="#1f3a6b" stroke-width="1.8">`;
+if(o.rt)P.forEach((p,i)=>{const a=u(p,P[(i+3)%4],11),b=u(p,P[(i+1)%4],11);s+=`<path d="M${p[0]+a[0]} ${p[1]+a[1]}l${b[0]} ${b[1]}l${-a[0]} ${-a[1]}"/>`});
+if(o.perp){const a=u(O,P[0],10),b=u(O,P[1],10);s+=`<path d="M${O[0]+a[0]} ${O[1]+a[1]}l${b[0]} ${b[1]}l${-a[0]} ${-a[1]}"/>`}
+s+=`</g><g stroke="#a12b2b" stroke-width="2" fill="none">`;
+(o.ang||[]).forEach(([i])=>{const p=P[i],a=u(p,P[(i+3)%4],24),b=u(p,P[(i+1)%4],24),c=a[0]*b[1]-a[1]*b[0];s+=`<path d="M${p[0]+a[0]} ${p[1]+a[1]}A24 24 0 0 ${c>0?1:0} ${p[0]+b[0]} ${p[1]+b[1]}"/>`});
+s+='</g>';
+(o.ang||[]).forEach(([i,l])=>{const p=P[i],a=u(p,P[(i+3)%4],1),b=u(p,P[(i+1)%4],1),m=u([0,0],[a[0]+b[0],a[1]+b[1]],42);s+=tx(p[0]+m[0],p[1]+m[1],l)});
+(o.side||[]).forEach(([i,l])=>{const a=P[i],b=P[(i+1)%4],m=[(a[0]+b[0])/2,(a[1]+b[1])/2],n=u(O,m,17);s+=tx(m[0]+n[0],m[1]+n[1],l)});
+(o.txt||[]).forEach(([x,y,l])=>s+=tx(x,y,l));
+s+=`<g fill="#1f3a6b" font-family="Noto Serif,Georgia,serif" font-style="italic" font-weight="700" font-size="18" text-anchor="middle" dominant-baseline="central">`;
+P.forEach((p,i)=>{const n=u(O,p,16);s+=`<text x="${p[0]+n[0]}" y="${p[1]+n[1]}">${'ABCD'[i]}</text>`});
+if(o.d)s+=`<text x="${O[0]+(t=='p'||t=='r'||t=='q'?-14:12)}" y="${O[1]+(t=='s'||t=='h'||t=='w'?-12:-9)}" font-size="15">O</text>`;
+return s+'</g></svg>'}
+
+/* ---------- Сұрақтар ---------- */
+const mc=(q,o,a,f)=>({t:'mc',q,o,a,f}), nm=(q,a,f)=>({t:'num',q,a,f});
+const V={
+1:[
+mc('Барлық қабырғалары тең параллелограмм қалай аталады?',['Тіктөртбұрыш','Ромб','Трапеция','Дөңес төртбұрыш'],1),
+mc('Параллелограмның диагональдары тең болса, ол қандай фигура болады?',['Ромб','Тіктөртбұрыш','Трапеция','Кез келген төртбұрыш'],1),
+mc('Суретте ABCD ромбы және оның диагональдары бейнеленген. Қай тұжырым әрқашан дұрыс?',['AC = BD','AC ⊥ BD','∠A = 90°','AB ≠ BC'],1,()=>fig('h',{d:1})),
+mc('Қай қасиет кез келген параллелограмм үшін орындалады?',['Диагональдары тең','Диагональдары перпендикуляр','Диагональдары қиылысу нүктесінде тең бөлінеді','Барлық қабырғалары тең'],2),
+mc('Қай фигура бір мезгілде тіктөртбұрыш та, ромб та болады?',['Параллелограмм','Шаршы','Трапеция','Кез келген тіктөртбұрыш'],1),
+nm('ABCD параллелограмында ∠A = 65°. ∠B бұрышын табыңыз (градуспен).',115,()=>fig('p',{ang:[[0,'65°'],[1,'?']]})),
+nm('ABCD ромбында AC = 24 см, BD = 10 см. Ромбтың қабырғасын табыңыз (см).',13,()=>fig('w',{d:1,perp:1,txt:[[90,88,'24'],[164,76,'10']]})),
+nm('Тіктөртбұрыштың қабырғалары 9 см және 12 см. Оның диагоналін табыңыз (см).',15,()=>fig('q',{d:1,rt:1,side:[[0,'9'],[1,'12']],txt:[[112,115,'?']]})),
+nm('Шаршының диагоналі 10 см. Шаршының ауданын табыңыз (см²).',50,()=>fig('s',{d:1,rt:1,txt:[[104,122,'10']]})),
+nm('Параллелограмның периметрі 52 см, AB = 15 см. BC қабырғасын табыңыз (см).',11,()=>fig('p',{side:[[0,'15'],[1,'?']]}))
+],
+2:[
+mc('Барлық бұрыштары тік параллелограмм қалай аталады?',['Ромб','Тіктөртбұрыш','Трапеция','Кез келген төртбұрыш'],1),
+mc('Параллелограмның диагональдары перпендикуляр болса, ол қандай фигура болады?',['Тіктөртбұрыш','Ромб','Трапеция','Кез келген төртбұрыш'],1),
+mc('Суретте ABCD тіктөртбұрышы және оның диагональдары бейнеленген. Қай тұжырым әрқашан дұрыс?',['AC ⊥ BD','AC = BD','AB = BC','∠A = 60°'],1,()=>fig('r',{d:1})),
+mc('Ромбтың диагоналі оның төбесіндегі бұрышқа қатысты қандай кесінді болады?',['Медиана','Биссектриса','Биіктік','Қабырға'],1),
+mc('Параллелограмм қандай жағдайда шаршы болады?',['Диагональдары тек тең болғанда','Диагональдары тек перпендикуляр болғанда','Диагональдары тең және перпендикуляр болғанда','Қарама-қарсы қабырғалары параллель болғанда'],2),
+nm('ABCD ромбында ∠B = 100°. ∠A бұрышын табыңыз (градуспен).',80,()=>fig('h',{ang:[[1,'100°'],[0,'?']]})),
+nm('ABCD ромбында AC = 30 см, BD = 16 см. Ромбтың қабырғасын табыңыз (см).',17,()=>fig('w',{d:1,perp:1,txt:[[90,88,'30'],[164,76,'16']]})),
+nm('Тіктөртбұрыштың диагоналі 25 см, бір қабырғасы 7 см. Екінші қабырғасын табыңыз (см).',24,()=>fig('r',{d:1,rt:1,side:[[0,'7'],[1,'?']],txt:[[92,112,'25']]})),
+nm('Шаршының диагоналі 14 см. Шаршының ауданын табыңыз (см²).',98,()=>fig('s',{d:1,rt:1,txt:[[104,122,'14']]})),
+nm('ABCD тіктөртбұрышында AB = 5 см, BC = 12 см. Диагональдарының қиылысу нүктесі — O. AO кесіндісін табыңыз (см).',6.5,()=>fig('r',{d:1,rt:1,side:[[0,'5'],[1,'12']]}))
+]};
+
+/* ---------- Күй ---------- */
+const $=id=>document.getElementById(id);
+const st={fio:'',cls:'',v:'',qs:[],i:0,ans:[],switches:0,active:false,deadline:0,tmr:null,t0:0,pending:false,done:false,payload:null};
+const show=id=>['s1','s2','s3','s4'].forEach(x=>$(x).classList.toggle('hide',x!==id));
+function chk(){$('next1').disabled=!(/\S+\s+\S+/.test($('fio').value.trim())&&$('cls').value&&$('var').value)}
+['fio','cls','var'].forEach(i=>$(i).addEventListener('input',chk));
+$('next1').onclick=()=>{st.fio=$('fio').value.trim().replace(/\s+/g,' ');st.cls=$('cls').value;st.v=$('var').value;show('s2')};
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+$('start').onclick=()=>{
+st.qs=V[st.v].map(q=>q.t=='mc'?{...q,opts:shuffle(q.o.map((x,k)=>({x,ok:k==q.a})))}:q);
+st.i=0;st.ans=[];st.switches=0;st.active=true;st.t0=Date.now();show('s3');render();
+};
+function render(){
+const q=st.qs[st.i];st.cur=null;
+$('qn').textContent=`Сұрақ ${st.i+1} / ${st.qs.length}`;
+$('nx').textContent=st.i==st.qs.length-1?'Тестті аяқтау':'Келесі';$('nx').disabled=true;
+let h=`<div><p class="qt">${q.q}</p>`;
+if(q.t=='mc')h+=q.opts.map((o,k)=>`<button class="opt" data-k="${k}"><b>${'АБВГ'[k]}</b><span>${o.x}</span></button>`).join('');
+else h+=`<input type="text" id="num" class="numin" inputmode="decimal" autocomplete="off" placeholder="Жауабы"><div class="hint">Тек санды енгізіңіз (өлшем бірлігінсіз).</div>`;
+h+='</div>';if(q.f)h+=`<div class="fig">${q.f()}</div>`;
+$('qb').className='qbody'+(q.f?' hasfig':'');$('qb').innerHTML=h;
+if(q.t=='mc')$('qb').querySelectorAll('.opt').forEach(b=>b.onclick=()=>{$('qb').querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');st.cur=+b.dataset.k;$('nx').disabled=false});
+else{const n=$('num');n.oninput=()=>{n.value=n.value.replace(/[^0-9.,]/g,'');st.cur=n.value;$('nx').disabled=!/\d/.test(n.value)};n.onkeydown=e=>{if(e.key=='Enter'&&!$('nx').disabled)advance()}}
+st.deadline=Date.now()+TIME*1000;clearInterval(st.tmr);tick();st.tmr=setInterval(tick,250);
+}
+function tick(){
+const left=Math.max(0,Math.ceil((st.deadline-Date.now())/1000));
+$('tm').textContent=`${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}`;$('tm').classList.toggle('low',left<=15);
+$('bf').style.width=Math.max(0,(st.deadline-Date.now())/(TIME*10))+'%';
+if(left<=0)advance(true);
+}
+function advance(auto){
+clearInterval(st.tmr);const q=st.qs[st.i];let ok=false,txt='—';
+if(st.cur!==null&&st.cur!==undefined&&!(auto&&q.t=='num'&&!/\d/.test(st.cur))){
+ if(q.t=='mc'){const o=q.opts[st.cur];ok=o.ok;txt=o.x}
+ else{txt=String(st.cur);const v=parseFloat(txt.replace(',','.'));ok=isFinite(v)&&Math.abs(v-q.a)<0.01}}
+st.ans.push({ok,txt});
+if(st.i<st.qs.length-1){st.i++;render()}else finish();
+}
+$('nx').onclick=()=>advance(false);
+
+/* ---------- Қойындыны бақылау ---------- */
+document.addEventListener('visibilitychange',()=>{
+if(!st.active)return;
+if(document.hidden){st.switches++;st.pending=true}
+else if(st.pending){st.pending=false;$('ovt').innerHTML=`Сіз тест бетінен шықтыңыз (ауысу саны: <b>${st.switches}</b>). Тест жалғасады, бірақ бағаңыздан <b>1 балл шегеріледі</b>. Уақыт тоқтамайды.`;$('ov').classList.remove('hide')}
+});
+$('ovb').onclick=()=>$('ov').classList.add('hide');
+addEventListener('beforeunload',e=>{if(st.active){e.preventDefault();e.returnValue=''}});
+
+/* ---------- Аяқтау ---------- */
+function finish(){
+st.active=false;$('ov').classList.add('hide');
+const raw=st.ans.filter(a=>a.ok).length,pen=st.switches>0?1:0,score=Math.max(0,raw-pen);
+st.payload={fio:st.fio,cls:st.cls,variant:st.v,score,rawScore:raw,max:MAX,penalty:pen,tabSwitches:st.switches,timeSec:Math.round((Date.now()-st.t0)/1000),
+answers:st.ans.map((a,i)=>`${i+1}) ${a.txt} ${a.ok?'✓':'✗'}`).join('\n')};
+$('sc').textContent=`${score} / ${MAX}`;
+$('rt').innerHTML=`<tr><td>Аты-жөні</td><td>${st.fio}</td></tr><tr><td>Сынып</td><td>${st.cls}</td></tr><tr><td>Нұсқа</td><td>${st.v}</td></tr>`+(pen?`<tr><td>Шегерілген балл</td><td>1 (қойынды ауыстырылды)</td></tr>`:'');
+show('s4');send();
+}
+async function send(){
+$('retry').classList.add('hide');
+if(!/^https:\/\//.test(SCRIPT_URL)){$('st').textContent='Нәтиже жіберілмеді: index.html ішінде SCRIPT_URL көрсетілмеген.';return}
+$('st').textContent='Нәтиже жіберілуде…';
+try{await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(st.payload)});$('st').textContent='Нәтиже мұғалімге жіберілді. Бетті жабуға болады.'}
+catch(e){$('st').textContent='Нәтиже жіберілмеді. Интернетті тексеріп, қайта жіберіңіз.';$('retry').classList.remove('hide')}
+}
+$('retry').onclick=send;
+</script>
+</body>
+</html>
